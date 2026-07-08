@@ -41,10 +41,9 @@ function buildKarixPayload({
         },
         to: phone
       },
-      sender: {
-        from: senderFrom,
-        name: senderFrom
-      }
+      sender: channel === 'gRBM'
+          ? { from: senderFrom }
+          : { from: senderFrom, name: senderFrom }
     },
     metaData: {
       originator: 'API',

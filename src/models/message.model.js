@@ -19,7 +19,7 @@ function normalize(body) {
   return {
     channel: channel,
     templateId,
-    senderFrom: normalizePhone(senderFrom),   // Remove + and spaces
+    senderFrom: senderFrom,   // Remove + and spaces
     webHookDNId: webHookDNId || null,
     campaignMembers: campaignMembers.map(normalizeMember)
   };
