@@ -17,6 +17,18 @@ const { buildKarixPayload } = require('../helpers/payload.helper');
 async function sendMessage(params) {
   const { phone, campaignMemberId, campaignMemberName } = params;
 
+  if (!phone) {
+    console.error(`[karixService] SKIPPED for ${campaignMemberName} (member: ${campaignMemberId}) — phone is missing`);
+
+    return {
+      campaignMemberId,
+      campaignMemberName,
+      status: 'FAILED',
+      httpStatus: null,
+      error: 'phone is required'
+    };
+  }
+
   // Build the Karix payload using helper
   const payload = buildKarixPayload(params);
 

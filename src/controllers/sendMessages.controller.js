@@ -15,6 +15,7 @@ const { validateRequest } = require('../helpers/validation.helper');
  *   "campaignMembers": [
  *     {
  *       "campaignMemberId": "a03Bh00000JHkfDIAT",
+ *       "campaignMemberName" : "John",
  *       "phone": "919876543210",
  *       "templateParams": { "1": "John", "2": "ORDER123" }
  *     }

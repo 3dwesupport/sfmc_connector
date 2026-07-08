@@ -17,18 +17,6 @@ function validateRequest(body) {
   if (!Array.isArray(campaignMembers) || campaignMembers.length === 0) {
     return 'campaignMembers must be a non-empty array';
   }
-
-  // Validate each member
-  for (let i = 0; i < campaignMembers.length; i++) {
-    const member = campaignMembers[i];
-    if (!member.phone) {
-      return `campaignMembers[${i}].phone is required`;
-    }
-    if (!member.campaignMemberId) {
-      return `campaignMembers[${i}].campaignMemberId is required`;
-    }
-  }
-
   return null; // valid
 }
 
