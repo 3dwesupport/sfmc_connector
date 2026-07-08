@@ -23,6 +23,24 @@ const { validateRequest } = require('../helpers/validation.helper');
  */
 async function sendMessages(req, res, next) {
     try {
+
+          // Step 0: Normalize campaignMembers — each element may be a JSON string
+    // instead of an object, so parse it here before validation.
+    if (Array.isArray(req.body?.campaignMembers)) {
+      req.body.campaignMembers = req.body.campaignMembers.map((member) => {
+        if (typeof member === 'string') {
+          try {
+            return JSON.parse(member);
+          } catch (e) {
+            const err = new Error(`Invalid JSON in campaignMembers entry: ${member}`);
+            err.statusCode = 400;
+            throw err;
+          }
+        }
+        return member; // already an object
+      });
+    }
+    console.log(req.body);
         // Step 1: Validate incoming request
         const validationError = validateRequest(req.body);
         if (validationError) {
